@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="index" class="info.ttps.actions.IndexAction" >
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="logout" class="info.ttps.actions.LogoutAction" >
+            <result name="success">/index.jsp</result>
+        </action>
+       <action name="login" class="la">
+            <result name="input">/login.jsp</result>
+            <result name="backEnd" type="redirectAction">backend</result>
+        </action>
+        <action name="signup" class="sua" >
+            <result name="input">/signup.jsp</result>
+            <result name="success" type="redirectAction">backend</result>
+        </action>
+
+
+        <action name="backend" class="info.ttps.actions.BackendAction" >
+            <result name="student">/backendStudent.jsp</result>
+<!--             <result name="admin">/backendAdmin.jsp</result> -->
+            <result name="admin" type="redirectAction">abmmoderatorList</result>
+            <result name="guest">/backendGuest.jsp</result>
+            <result name="moderator">/backendModerator.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        
+        <action name="abmmoderatorList" class="abmma">
+            <result name="success">/listModerator.jsp</result>
+            <result name="error" type="redirectAction">login</result>
+        </action>
+        
+        <action name="abmmoderatorNew" class="abmma" method="newModerator">
+            <result name="input">/newModerator.jsp</result>
+            <result name="success" type="redirect">abmmoderatorList</result>
+            <result name="error" type="redirectAction">login</result>
+        </action>
+        
+        <action name="abmmoderatorModify" class="abmma" method="modifyModerator">
+            <result name="input">/modifyModerator.jsp</result>
+            <result name="success" type="redirect">abmmoderatorList</result>
+            <result name="error" type="redirectAction">login</result>
+         </action>
+         
+        <action name="abmmoderatorDelete" class="abmma" method="deleteModerators">
+            <result name="success" type="redirect">abmmoderatorList</result>
+            <result name="error" type="redirectAction">login</result>
+         </action>
+    </package>
+</struts>
